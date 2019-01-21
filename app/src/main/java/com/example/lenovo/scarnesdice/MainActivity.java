@@ -120,9 +120,19 @@ public class MainActivity extends AppCompatActivity {
     public void alterButtons(Boolean boo) {
         Button rButton = (Button) findViewById(R.id.roll);
         rButton.setEnabled(boo);
+        if (boo)
+            rButton.setVisibility(View.VISIBLE);
+        else
+            rButton.setVisibility(View.INVISIBLE);
+
 
         Button hButton = (Button) findViewById(R.id.hold);
         hButton.setEnabled(boo);
+        if (boo)
+            hButton.setVisibility(View.VISIBLE);
+        else
+            hButton.setVisibility(View.INVISIBLE);
+
     }
 
     public void computerTurn() {
