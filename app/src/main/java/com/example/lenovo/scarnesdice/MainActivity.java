@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
         final Button holdButton = (Button) findViewById(R.id.hold);
         holdButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                userOverScore = userTurnScore;
+                userOverScore += userTurnScore;
                 userTurnScore = 0;
 
                 setTextScore(text);
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Changes the image of the die based on the roll result.
     public void changeDie(int i, ImageView image) {
         switch (i) {
             case 1: image.setImageResource(R.drawable.dice1);
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Generates and returns a pseudo-randon number between 1 and 6.
     public static int rollDie() {
         Random dieRoll = new Random();
 
@@ -97,44 +99,40 @@ public class MainActivity extends AppCompatActivity {
         return dieResult;
     }
 
+    // Modifies TextView object with score of user.
     public void setTextScore(TextView msg) {
         String scoreText = "Your score: "+userOverScore+" Computer score: "+compOverScore+" " +
                 "Your turn score: "+userTurnScore;
         msg.setText(scoreText);
     }
 
+    // Modifies TextView object with score of computer.
     public void setCompScore(TextView msg) {
         String scoreText = "Your score: "+userOverScore+" Computer score: "+compOverScore+" " +
                 "Computer turn score: "+compTurnScore;
         msg.setText(scoreText);
     }
 
-  /*  public void endComputerTurn() {
+    // Ends the computer turn and sets appropriate text indicating a 1 has rolled.
+    public void endComputerTurn(TextView msg) {
         compTurnScore = 0;
 
         String scoreText = "Your score: "+userOverScore+" Computer score: "+compOverScore+" " +
-                "Computer turn score: "+compTurnScore;
+                "Computer turn score: "+compTurnScore+" Computer rolled a 1!";
         msg.setText(scoreText);
-    }*/
+    }
 
+  // Removes access to roll and hold buttons. Method to be used during computer turn.
     public void alterButtons(Boolean boo) {
         Button rButton = (Button) findViewById(R.id.roll);
         rButton.setEnabled(boo);
-        if (boo)
-            rButton.setVisibility(View.VISIBLE);
-        else
-            rButton.setVisibility(View.INVISIBLE);
-
 
         Button hButton = (Button) findViewById(R.id.hold);
         hButton.setEnabled(boo);
-        if (boo)
-            hButton.setVisibility(View.VISIBLE);
-        else
-            hButton.setVisibility(View.INVISIBLE);
 
     }
 
+    // Sets up a turn where the computer rolls a maximum score o
     public void computerTurn() {
         alterButtons(false);
 
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
 
         int cDie = 0;
 
-        while(cDie < 20) {
+        while(compTurnScore < 20) {
 
             cDie = rollDie();
 
@@ -152,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             setCompScore(text);
 
             if(cDie == 1) {
-                //endComputerTurn();
+                endComputerTurn(text);
                 compTurnScore = 0;
                 break;
             }
