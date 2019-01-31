@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         final ImageView image = (ImageView) findViewById(R.id.imageView);
         final TextView text = (TextView) findViewById(R.id.textView);
 
+        // Roll button is defined, on user click will call changeDie method to generate pseudo-random number between
+        // 1 and 6 inclusive. On a roll of 1, the user turn ends and copmuter turn is initiated.
         final Button rollButton = (Button) findViewById(R.id.roll);
         rollButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Reset button will set all fields (member variables) to zero.
         final Button resetButton = (Button) findViewById(R.id.reset);
         resetButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Hold button adds the turn score to the total score for the user and begins computer turn.
         final Button holdButton = (Button) findViewById(R.id.hold);
         holdButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
