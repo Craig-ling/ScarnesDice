@@ -132,7 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    // Sets up a turn where the computer rolls a maximum score o
+    // Sets up a turn where the computer rolls a maximum score. Computer generates die rolls until their turn score
+    // is 20 or higher, or a 1 is rolled. Player buttons are disabled during the computer turn with the alterButton method.
     public void computerTurn() {
         alterButtons(false);
 
